@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Tilt } from 'react-tilt';
-import { ExternalLink, Database, ShoppingCart, TabletSmartphone, Globe, Layout, ArrowRight } from 'lucide-react';
+import { ExternalLink, Database, ShoppingCart, TabletSmartphone, Globe, Layout, ArrowRight, ShieldCheck, GraduationCap } from 'lucide-react';
 
 const ProjectsPage = () => {
     const defaultOptions = {
@@ -17,7 +17,7 @@ const ProjectsPage = () => {
         easing: "cubic-bezier(.03,.98,.52,.99)",    // Easing on enter/exit.
     }
 
-    const categories = ["All", "Ecommerce", "Business", "SaaS/App", "Jewellery/Gold"];
+    const categories = ["All", "Ecommerce", "Business", "SaaS/App", "Jewellery/Gold", "Security", "Education"];
     const [selectedCategory, setSelectedCategory] = useState("All");
 
     const projects = [
@@ -92,6 +92,25 @@ const ProjectsPage = () => {
             tech: ["Next.js", "GraphQL", "Redis"],
             image: "from-purple-900 to-violet-900",
             icon: <Layout size={32} />
+        },
+        {
+            title: "Hindustan Security Services",
+            category: "Security",
+            desc: "A full-featured corporate website for a premier security agency, showcasing residential, armed, ATM/bank guarding, industrial patrol, hospital security, and technical manpower services.",
+            tech: ["React.js", "Tailwind CSS", "Node.js", "SEO Optimized"],
+            image: "from-slate-900 to-blue-950",
+            icon: <ShieldCheck size={32} />,
+            liveUrl: "https://hindusthansecurityjobs.com/services"
+        },
+        {
+            title: "Andhra Inspire Academy",
+            category: "Education",
+            desc: "A modern, feature-rich educational website for a competitive exam coaching institute — covering programs, admissions, results, and a live assessment enrollment portal with fee concession workflows.",
+            tech: ["React.js", "Tailwind CSS", "Node.js", "SEO Optimized"],
+            image: "from-red-950 to-indigo-950",
+            imgPath: "/projects/inspire-academy.png",
+            icon: <GraduationCap size={32} />,
+            liveUrl: "https://inspiracademyap.com"
         }
     ];
 
@@ -153,15 +172,38 @@ const ProjectsPage = () => {
                         >
                             <Tilt options={defaultOptions} className="h-full">
                                 <div className="group relative h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:border-accent/50 transition-colors duration-500 flex flex-col">
-                                    {/* Image Placeholder Area */}
-                                    <div className={`h-48 w-full bg-gradient-to-br ${project.image} relative overflow-hidden group-hover:brightness-110 transition-all duration-500`}>
-                                        <div className="absolute inset-0 bg-black/20" />
-                                        <div className="absolute inset-0 flex items-center justify-center text-white/20 group-hover:text-white/40 transition-colors font-bold text-lg tracking-widest">
-                                            {project.title.toUpperCase()}
-                                        </div>
+                                    {/* Image / Banner Area */}
+                                    <div className={`h-48 w-full relative overflow-hidden group-hover:brightness-110 transition-all duration-500 ${!project.imgPath ? `bg-gradient-to-br ${project.image}` : 'bg-gray-900'}`}>
+                                        {project.imgPath ? (
+                                            <img
+                                                src={project.imgPath}
+                                                alt={project.title}
+                                                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                                                onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+                                            />
+                                        ) : null}
+                                        {/* Fallback overlay / gradient content */}
+                                        <div className={`absolute inset-0 bg-black/20 ${project.imgPath ? 'group-hover:bg-black/10' : ''} transition-colors duration-500`} />
+                                        {!project.imgPath && (
+                                            <div className="absolute inset-0 flex items-center justify-center text-white/20 group-hover:text-white/40 transition-colors font-bold text-lg tracking-widest">
+                                                {project.title.toUpperCase()}
+                                            </div>
+                                        )}
                                         <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md p-2 rounded-lg text-accent border border-white/10">
                                             {project.icon}
                                         </div>
+                                        {project.liveUrl && (
+                                            <a
+                                                href={project.liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={e => e.stopPropagation()}
+                                                className="absolute top-4 left-4 flex items-center gap-1.5 bg-green-500/20 hover:bg-green-500/40 border border-green-400/40 text-green-300 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-md transition-all duration-300"
+                                            >
+                                                <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                                                Live Site
+                                            </a>
+                                        )}
                                     </div>
 
                                     <div className="p-6 flex flex-col flex-grow">
@@ -185,7 +227,25 @@ const ProjectsPage = () => {
                                             ))}
                                         </div>
 
-
+                                        {/* Action Buttons */}
+                                        <div className="flex gap-3 mt-auto">
+                                            <Link
+                                                to={`/projects/${project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
+                                                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-accent/10 hover:bg-accent text-accent hover:text-white border border-accent/30 hover:border-accent text-sm font-semibold transition-all duration-300"
+                                            >
+                                                View Details <ArrowRight size={14} />
+                                            </Link>
+                                            {project.liveUrl && (
+                                                <a
+                                                    href={project.liveUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white border border-white/10 text-sm font-semibold transition-all duration-300"
+                                                >
+                                                    <ExternalLink size={14} />
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </Tilt>

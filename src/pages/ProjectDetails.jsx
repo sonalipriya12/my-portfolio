@@ -157,6 +157,44 @@ const projectData = {
         ],
         techStack: ["Next.js", "GraphQL", "Redis Caching", "Vercel"],
         impact: "Achieved 99.9% uptime during peak traffic and saw a 3x increase in organic search traffic."
+    },
+    "hindustan-security-services": {
+        title: "Hindustan Security Services",
+        category: "Security",
+        tagline: "Premier Security Agency – Digital Presence & Service Portal",
+        heroImage: "from-slate-900 to-blue-950",
+        liveUrl: "https://hindusthansecurityjobs.com/services",
+        problem: "Hindustan Security Services lacked a modern digital platform to showcase their wide range of professional security offerings — from residential guarding to ATM/bank protection and technical manpower — making it difficult to attract corporate clients online.",
+        solution: "A professional, SEO-optimized corporate website with structured service listings, inquiry forms, and a career portal. The site features a clean grid-based service catalog, allowing prospective clients to instantly understand the agency's capabilities and submit inquiries.",
+        features: [
+            "Residential & 24/7 guarding service pages",
+            "Armed security & ATM/Bank guarding sections",
+            "Industrial estate & hospital security listings",
+            "Technical manpower outsourcing portal",
+            "Online inquiry & career application forms",
+            "Fully responsive & SEO-optimized design"
+        ],
+        techStack: ["React.js", "Tailwind CSS", "Node.js", "SEO Optimized"],
+        impact: "Established a strong online brand presence, enabling the agency to attract corporate and institutional clients digitally — reducing cold outreach effort by 60% and generating consistent inbound inquiry leads."
+    },
+    "andhra-inspire-academy": {
+        title: "Andhra Inspire Academy",
+        category: "Education",
+        tagline: "Digital Platform for Competitive Exam Coaching Excellence",
+        heroImage: "from-red-950 to-indigo-950",
+        liveUrl: "https://inspiracademyap.com",
+        problem: "Andhra Inspire Academy, a leading institute for competitive exams, relied on word-of-mouth and offline channels to attract students. They lacked a digital presence to showcase their programs, publish results, and streamline admissions — resulting in missed enrollment opportunities.",
+        solution: "A fully featured education website with structured program listings, a live results board, an online admissions flow, and a real-time countdown-driven assessment enrollment portal. The site leverages SEO best practices to capture organic traffic from students searching for competitive exam coaching.",
+        features: [
+            "Program catalog for competitive exam courses",
+            "Live results & merit board display",
+            "Online admissions & inquiry system",
+            "Countdown-driven assessment enrollment portal",
+            "Fee concession evaluation workflow",
+            "Fully responsive & SEO-optimized design"
+        ],
+        techStack: ["React.js", "Tailwind CSS", "Node.js", "SEO Optimized"],
+        impact: "Drove a measurable increase in online admissions enquiries within the first month of launch, giving the academy a professional digital identity that competes with larger established coaching brands."
     }
 };
 
@@ -275,10 +313,25 @@ const ProjectDetails = () => {
                             <GlassCard className="p-6">
                                 <h3 className="text-lg font-bold text-white mb-4">Project Links</h3>
                                 <div className="space-y-3">
-                                    <a href="#" className="flex items-center justify-between w-full px-4 py-3 bg-white/5 hover:bg-white/10 rounded-xl text-gray-300 transition-colors">
-                                        <span className="flex items-center gap-2"><ExternalLink size={16} /> Live Demo</span>
-                                        <ArrowRight size={16} />
-                                    </a>
+                                    {project.liveUrl ? (
+                                        <a
+                                            href={project.liveUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center justify-between w-full px-4 py-3 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-xl text-accent transition-colors"
+                                        >
+                                            <span className="flex items-center gap-2">
+                                                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                                                <ExternalLink size={16} /> Live Site
+                                            </span>
+                                            <ArrowRight size={16} />
+                                        </a>
+                                    ) : (
+                                        <a href="#" className="flex items-center justify-between w-full px-4 py-3 bg-white/5 hover:bg-white/10 rounded-xl text-gray-300 transition-colors">
+                                            <span className="flex items-center gap-2"><ExternalLink size={16} /> Live Demo</span>
+                                            <ArrowRight size={16} />
+                                        </a>
+                                    )}
                                     <a href="#" className="flex items-center justify-between w-full px-4 py-3 bg-white/5 hover:bg-white/10 rounded-xl text-gray-300 transition-colors">
                                         <span className="flex items-center gap-2"><Github size={16} /> Source Code</span>
                                         <ArrowRight size={16} />

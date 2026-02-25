@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building2, ShoppingBag, Car, GraduationCap, Gem, ShoppingCart, Newspaper, Smartphone, Layout, Truck } from 'lucide-react';
+import { Building2, ShoppingBag, Car, GraduationCap, Gem, ShoppingCart, Newspaper, Smartphone, Layout, Truck, ShieldCheck } from 'lucide-react';
 
 const BrandLogo = ({ Icon, name }) => (
     <div className="flex flex-col items-center gap-4 group min-w-[200px] hover:scale-110 transition-transform duration-300 cursor-pointer">
@@ -45,6 +45,7 @@ const ClientsPage = () => {
         { name: "NSM School", Icon: GraduationCap },
         { name: "Alankar Furniture", Icon: Layout },
         { name: "E3 Mall", Icon: Smartphone },
+        { name: "Hindustan Security", Icon: ShieldCheck },
     ];
 
     const retailClients = [
@@ -54,6 +55,7 @@ const ClientsPage = () => {
         { name: "City Kart", Icon: ShoppingCart },
         { name: "Daily News", Icon: Newspaper },
         { name: "Fast Logistics", Icon: Truck },
+        { name: "Inspire Academy", Icon: GraduationCap },
     ];
 
     return (
